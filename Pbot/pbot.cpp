@@ -6,9 +6,6 @@ using namespace Filter;
 
 void pbot::onStart()
 {
-	// Hello World!
-	Broodwar->sendText("Hello world!");
-
 	// Print the map name.
 	// BWAPI returns std::string when retrieving a string, don't forget to add .c_str() when printing!
 	Broodwar << "The map is " << Broodwar->mapName() << "!" << std::endl;
@@ -26,7 +23,6 @@ void pbot::onStart()
 	// Check if this is a replay
 	if (Broodwar->isReplay())
 	{
-
 		// Announce the players in the replay
 		Broodwar << "The following players are in this replay:" << std::endl;
 
@@ -38,11 +34,15 @@ void pbot::onStart()
 			if (!p->isObserver())
 				Broodwar << p->getName() << ", playing as " << p->getRace() << std::endl;
 		}
-
 	}
 	else // if this is not a replay
 	{
-		// Retrieve you and your enemy's races. enemy() will just return the first enemy.
+		/*	In case you don't want to watch the matches, the bot can play at full speed.
+			To do so remove the comment on the following lines. */
+		//Broodwar->setFrameSkip(60);
+		//Broodwar->setLocalSpeed(0);
+
+		// Retrieve you and your enemy's races.enemy() will just return the first enemy.
 		// If you wish to deal with multiple enemies then you must use enemies().
 		if (Broodwar->enemy()) // First make sure there is an enemy
 			Broodwar << "The matchup is " << Broodwar->self()->getRace() << " vs " << Broodwar->enemy()->getRace() << std::endl;

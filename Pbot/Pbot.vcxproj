@@ -69,11 +69,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bases.h" />
+    <ClInclude Include="BuildingPlacement.h" />
+    <ClInclude Include="Economy.h" />
+    <ClInclude Include="Military.h" />
     <ClInclude Include="pbot.h" />
+    <ClInclude Include="Production.h" />
+    <ClInclude Include="Reinforcements.h" />
+    <ClInclude Include="rlMain.h" />
+    <ClInclude Include="Squads.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="Targets.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bases.cpp" />
+    <ClCompile Include="BuildingPlacement.cpp" />
     <ClCompile Include="dll.cpp" />
+    <ClCompile Include="Economy.cpp" />
+    <ClCompile Include="Military.cpp" />
     <ClCompile Include="pbot.cpp" />
+    <ClCompile Include="Production.cpp" />
+    <ClCompile Include="Reinforcements.cpp" />
+    <ClCompile Include="rlMain.cpp" />
+    <ClCompile Include="Squads.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="Targets.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
