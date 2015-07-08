@@ -1,24 +1,40 @@
 #pragma once
 
 #include <BWAPI.h>
-#include <vector>
+#include <queue>
 
 using namespace BWAPI;
+using namespace Filter;
 using namespace std;
 
-struct baseTuple
+struct baseRecord
 {
-	int id;
 	Unit nexus, assimilator;
-	int mineral, vespene;
+	bool hasGeyser;
+	int crystals, mineralWorkers, vespeneWorkers;
+
+	baseRecord(Unit nex)
+	{
+		nexus = nex;
+		assimilator = NULL;
+		hasGeyser = (!Broodwar->getUnitsInRadius(nex->getPosition(), 32 * 10, (IsResourceContainer&&!IsMineralField)).empty());
+		crystals = Broodwar->getUnitsInRadius(nex->getPosition(), 32 * 10, IsMineralField).size();
+		mineralWorkers = 0;
+		vespeneWorkers = 0;
+	}
 };
 
-struct serviceTuple
+enum Task{idle, mineral, vespene, building};
+
+struct serviceRecord
 {
-	int baseId;
+	int nexus_ID;
 	Unit worker;
-	string task;
+	Task task;
 };
+
+using BaseTable = vector<baseRecord>;
+using ServiceTable = map<int,serviceRecord>; //O primeiro campo é o workerID!
 
 class Bases
 {
@@ -34,20 +50,26 @@ public:
 private:
 
 	const int workerCountLimit = 75;
-	const float workerPerMineral = 2.5;
-	const float workerPerVespene = 3;
+	const int workerPerMineral = 2;
+	const int workerPerVespene = 3;
 
-	int BaseCounter; //Conta o número de bases, é usado para gerar a ID da tupla de bases.
+	BaseTable baseTable;
+	ServiceTable serviceTable;
 
-	vector<baseTuple> BaseTable;
-	vector<serviceTuple> ServiceTable;
+	int currentTotalWorkerCount;
+	queue<Unit> freeWorkers;
 
+	int optimalWorkerCount(baseRecord bt);
+	int currentWorkerCount(baseRecord bt);
+	
+	void baseRecordUpkeep();
+	void baseTableUpkeep();
+	void serviceTableUpkeep();
+
+	void removeExcess();
+	void reallocateWorkers();
 	void trainWorker();
-	UnitType requestPylon();
-	UnitType requestNexus();
-	UnitType requestAssimilator();
-	void allocateWorker();          // Emprega um trabalho na base na qual já está alocado.
-	void redistributeWorker();      // Move trabalhadores entre as bases, retirando de bases super lotadas ou da base#0 para bases que precisem de trabalhadores.
 
+	void moveWorkersToVespene();
 };
 

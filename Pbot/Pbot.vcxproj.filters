@@ -36,9 +36,6 @@
     <ClInclude Include="rlMain.h">
       <Filter>PbotStructure\Economy\Reinforcement Learning</Filter>
     </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>PbotStructure\Economy\Reinforcement Learning</Filter>
-    </ClInclude>
     <ClInclude Include="Economy.h">
       <Filter>PbotStructure\Economy</Filter>
     </ClInclude>
@@ -72,9 +69,6 @@
       <Filter>Pbot\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="rlMain.cpp">
-      <Filter>PbotStructure\Economy\Reinforcement Learning</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
       <Filter>PbotStructure\Economy\Reinforcement Learning</Filter>
     </ClCompile>
     <ClCompile Include="Economy.cpp">

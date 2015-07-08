@@ -25,5 +25,6 @@ private:
 	Production Production;
 
 	BWAPI::Unitset buildings, workers;
+	vector<int> resources;
 };
 

@@ -32,6 +32,5 @@ private:
 
 	Unit getNearestFreeWorker(TilePosition selectedTile);
 	void build(UnitType ut, TilePosition selectedTile, Unit worker);
-
 };
 

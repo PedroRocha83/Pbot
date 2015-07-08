@@ -54,12 +54,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NOMINMAX;WIN32;NDEBUG;_WINDOWS;_USRDLL;EXAMPLEAIMODULE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -78,7 +79,6 @@
     <ClInclude Include="Reinforcements.h" />
     <ClInclude Include="rlMain.h" />
     <ClInclude Include="Squads.h" />
-    <ClInclude Include="State.h" />
     <ClInclude Include="Targets.h" />
   </ItemGroup>
   <ItemGroup>
@@ -92,7 +92,6 @@
     <ClCompile Include="Reinforcements.cpp" />
     <ClCompile Include="rlMain.cpp" />
     <ClCompile Include="Squads.cpp" />
-    <ClCompile Include="State.cpp" />
     <ClCompile Include="Targets.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
