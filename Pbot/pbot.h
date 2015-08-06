@@ -1,5 +1,7 @@
 #pragma once
 #include <BWAPI.h>
+#include "Economy.h"
+#include "Military.h"
 
 // Remember not to use "Broodwar" in any global class constructor!
 
@@ -26,4 +28,7 @@ public:
 	virtual void onUnitComplete(BWAPI::Unit unit);
 	// Everything below this line is safe to modify.
 
+private:
+	Economy Econ;
+	Military Mil;
 };

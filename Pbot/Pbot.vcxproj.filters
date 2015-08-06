@@ -45,20 +45,14 @@
     <ClInclude Include="Bases.h">
       <Filter>PbotStructure\Economy</Filter>
     </ClInclude>
-    <ClInclude Include="BuildingPlacement.h">
-      <Filter>PbotStructure\Economy</Filter>
-    </ClInclude>
     <ClInclude Include="Military.h">
-      <Filter>PbotStructure\Military</Filter>
-    </ClInclude>
-    <ClInclude Include="Targets.h">
       <Filter>PbotStructure\Military</Filter>
     </ClInclude>
     <ClInclude Include="Squads.h">
       <Filter>PbotStructure\Military</Filter>
     </ClInclude>
-    <ClInclude Include="Reinforcements.h">
-      <Filter>PbotStructure\Military</Filter>
+    <ClInclude Include="BuildingPlacer.h">
+      <Filter>PbotStructure\Economy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -80,20 +74,14 @@
     <ClCompile Include="Bases.cpp">
       <Filter>PbotStructure\Economy</Filter>
     </ClCompile>
-    <ClCompile Include="BuildingPlacement.cpp">
-      <Filter>PbotStructure\Economy</Filter>
-    </ClCompile>
     <ClCompile Include="Military.cpp">
-      <Filter>PbotStructure\Military</Filter>
-    </ClCompile>
-    <ClCompile Include="Targets.cpp">
       <Filter>PbotStructure\Military</Filter>
     </ClCompile>
     <ClCompile Include="Squads.cpp">
       <Filter>PbotStructure\Military</Filter>
     </ClCompile>
-    <ClCompile Include="Reinforcements.cpp">
-      <Filter>PbotStructure\Military</Filter>
+    <ClCompile Include="BuildingPlacer.cpp">
+      <Filter>PbotStructure\Economy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

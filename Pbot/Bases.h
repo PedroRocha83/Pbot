@@ -1,40 +1,27 @@
 #pragma once
 
 #include <BWAPI.h>
-#include <queue>
+#include <vector>
 
 using namespace BWAPI;
 using namespace Filter;
 using namespace std;
 
-struct baseRecord
-{
-	Unit nexus, assimilator;
-	bool hasGeyser;
-	int crystals, mineralWorkers, vespeneWorkers;
+#define WorkerMineral 2;
+#define WorkerVespene 3;
 
-	baseRecord(Unit nex)
-	{
-		nexus = nex;
-		assimilator = NULL;
-		hasGeyser = (!Broodwar->getUnitsInRadius(nex->getPosition(), 32 * 10, (IsResourceContainer&&!IsMineralField)).empty());
-		crystals = Broodwar->getUnitsInRadius(nex->getPosition(), 32 * 10, IsMineralField).size();
-		mineralWorkers = 0;
-		vespeneWorkers = 0;
-	}
-};
-
-enum Task{idle, mineral, vespene, building};
+enum task{ mineral, vespene };
 
 struct serviceRecord
 {
-	int nexus_ID;
-	Unit worker;
-	Task task;
+	int workerID = -1, NexusID =-1;
+	task currentTask;
 };
 
-using BaseTable = vector<baseRecord>;
-using ServiceTable = map<int,serviceRecord>; //O primeiro campo é o workerID!
+struct baseRecord
+{
+	int NexusID = -1, AssimilatorID =-1;
+};
 
 class Bases
 {
@@ -43,33 +30,37 @@ public:
 	Bases();
 	~Bases();
 
-	void onStart();
+	void onStart(Unitset us);
 	void onFrame();
 	void onEnd();
 
+	void onUnitCreate(Unit unit);
+	void onUnitDestroy(Unit unit);
+	void onUnitMorph(Unit unit);
+
+	// Nexus
+	bool mayExpand();
+	
+	// Assimilator
+	bool needsAssimilator();
+
 private:
 
-	const int workerCountLimit = 75;
-	const int workerPerMineral = 2;
-	const int workerPerVespene = 3;
+	vector<serviceRecord> svRec;
+	vector<baseRecord> bRec;
 
-	BaseTable baseTable;
-	ServiceTable serviceTable;
+	void addNexus(int nID);
+	void removeNexus(int nID);
 
-	int currentTotalWorkerCount;
-	queue<Unit> freeWorkers;
+	void addAssimilator(int aID);
+	void removeAssimilator(int aID);
 
-	int optimalWorkerCount(baseRecord bt);
-	int currentWorkerCount(baseRecord bt);
-	
-	void baseRecordUpkeep();
-	void baseTableUpkeep();
-	void serviceTableUpkeep();
+	void addWorker(int wID);
+	void removeWorker(int wID);
 
+	// Retira trabalhadores a medida que o mineral acaba.
 	void removeExcess();
-	void reallocateWorkers();
-	void trainWorker();
-
-	void moveWorkersToVespene();
+	// Realoca trabalhadores para outras bases.
+	void reallocateWorker();
+	
 };
-

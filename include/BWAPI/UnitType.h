@@ -814,6 +814,15 @@ namespace BWAPI
     /// @returns true if this unit type is used for an ability, and false otherwise.
     bool isSpell() const;
 
+    /// <summary>Checks if this structure type produces creep.</summary> That is, the unit type
+    /// spreads creep over a wide area so that @Zerg structures can be placed on it.
+    ///
+    /// @returns true if this unit type spreads creep.
+    /// @implies getRace() == Races::Zerg, isBuilding()
+    ///
+    /// @since 4.1.2
+    bool producesCreep() const;
+
     /// <summary>Checks if this unit type produces larva.</summary> This is essentially used to
     /// check if the unit type is a @Hatchery, @Lair, or @Hive.
     ///
@@ -855,15 +864,60 @@ namespace BWAPI
     /// @returns true if this unit type can construct an add-on, and false if it can not.
     /// @see isAddon
     bool canBuildAddon() const;
+
+    /// <summary>Retrieves the set of units that this unit type is capable of creating.</summary>
+    /// This includes training, constructing, warping, and morphing.
+    ///
+    /// @note Some maps have special parameters that disable construction of units that are otherwise
+    /// normally available. Use PlayerInterface::isUnitAvailable to determine if a unit type is
+    /// actually available in the current game for a specific player.
+    ///
+    /// @returns UnitType::set containing the units it can build.
+    /// @see PlayerInterface::isUnitAvailable
+    ///
+    /// @since 4.1.2
+    const UnitType::set& buildsWhat() const;
+
+    /// <summary>Retrieves the set of technologies that this unit type is capable of researching.</summary>
+    /// 
+    /// @note Some maps have special parameters that disable certain technologies. Use
+    /// PlayerInterface::isResearchAvailable to determine if a technology is actually available in the
+    /// current game for a specific player.
+    ///
+    /// @returns TechType::set containing the technology types that can be researched.
+    /// @see PlayerInterface::isResearchAvailable
+    ///
+    /// @since 4.1.2
+    const SetContainer<TechType>& researchesWhat() const;
+
+    /// <summary>Retrieves the set of upgrades that this unit type is capable of upgrading.</summary>
+    ///
+    /// @note Some maps have special upgrade limitations. Use PlayerInterface::getMaxUpgradeLevel
+    /// to check if an upgrade is available.
+    ///
+    /// @returns UpgradeType::set containing the upgrade types that can be upgraded.
+    /// @see PlayerInterface::getMaxUpgradeLevel
+    ///
+    /// @since 4.1.2
+    const SetContainer<UpgradeType>& upgradesWhat() const;
   };
 
-  /// <summary>The amount of shield points that a unit recovers over 256 frames.</summary> That is, 7/256 shields are regenerated per frame.
+  /// <summary>The amount of shield points that a unit recovers over 256 frames.</summary>
+  /// That is, 7/256 shields are regenerated per frame.
+  ///
+  /// @since 4.1.0 Beta
   static const int SHIELD_REGEN_RATE = 7;
 
-  /// <summary>The amount of energy that a unit with special abilities recovers over 256 frames.</summary> That is, 8/256 energy is generated per frame.
+  /// <summary>The amount of energy that a unit with special abilities recovers over 256 frames.</summary>
+  /// That is, 8/256 energy is generated per frame.
+  ///
+  /// @since 4.1.0 Beta
   static const int ENERGY_REGEN_RATE = 8;
 
-  /// <summary>The amount of life that a zerg unit recovers over 256 frames.</summary> That is, 4/256 life is regenerated per frame.
+  /// <summary>The amount of life that a zerg unit recovers over 256 frames.</summary>
+  /// That is, 4/256 life is regenerated per frame.
+  ///
+  /// @since 4.1.0 Beta
   static const int LIFE_REGEN_RATE = 4;
 
   /// @ingroup Types
