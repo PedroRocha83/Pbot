@@ -215,8 +215,10 @@ bool Economy::needsAssimilator()
 void Economy::addBuilding(UnitType ut)
 {
 	buildingStatus bs;
-	bs.buildingType = ut;
-	currentBuildings.push_back(bs);
+	if (ut != UnitTypes::None){
+		bs.buildingType = ut;
+		currentBuildings.push_back(bs);
+	}
 }
 
 void Economy::addBuildingCheckReq(UnitType add, UnitType req, int moreThan)

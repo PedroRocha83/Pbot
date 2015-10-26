@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Targets.h"
 #include "Squads.h"
 
 class Military
@@ -14,7 +13,6 @@ public:
 	void onEnd();
 	
 private:
-	Targets Targets;
 	Squads Squads;
 };
 

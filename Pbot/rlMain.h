@@ -113,7 +113,7 @@ public:
 private:
 
 	int currentState = 0,
-		totalEpisodes = 250,
+		totalEpisodes = 1000,
 		currentEpisode = 0; // Salvo na tabela Q.
 
 	vector<int> MaxUnitType;
@@ -132,7 +132,6 @@ private:
 		
 	//	Le o arquivo de configuração e carrega a variante a ser testada.
 	void preparations();
-
 
 	set<int> returnPossibleActions(int state);
 	int returnBestAction(int state);

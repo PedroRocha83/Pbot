@@ -32,7 +32,6 @@ public:
 
 	void onStart(Unitset us);
 	void onFrame();
-	void onEnd();
 
 	void onUnitCreate(Unit unit);
 	void onUnitDestroy(Unit unit);

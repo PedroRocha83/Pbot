@@ -40,6 +40,7 @@ void pbot::onStart()
 		/*	In case you don't want to watch the matches, the bot can play at full speed.
 			To do so remove the comment on the following lines. */
 		Broodwar->setFrameSkip(4);
+		//Broodwar->setGUI(false);
 		Broodwar->setLocalSpeed(0);
 
 		// Retrieve you and your enemy's races.enemy() will just return the first enemy.

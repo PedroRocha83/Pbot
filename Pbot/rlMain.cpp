@@ -85,7 +85,6 @@ void rlMain::QlearningUpdate(int s, int a, int sprime, float r)
 }
 
 // Escolha de ações
-
 set<int> rlMain::returnPossibleActions(int state)
 {
 	set<int> r;
@@ -142,7 +141,6 @@ int rlMain::returnAlternativeAction(int state, int avoidThis, set<int> pickFromT
 }
 
 // Recompensa
-
 float rlMain::GetTransitionReward(int nextState)
 {
 	float r = 0;
@@ -166,7 +164,6 @@ float rlMain::GetTransitionReward(int nextState)
 	return r;
 }
 
-	
 // A recompensa não pode ser negativa.
 float rlMain::GetEpisodeReward(bool isWinner)
 {
@@ -290,5 +287,5 @@ void rlMain::saveQtable()
 
 void rlMain::preparations()
 {
-
+	alpha = alpha * (1 - (totalEpisodes - currentEpisode) / totalEpisodes);
 }
